@@ -31,3 +31,7 @@ def count_carnivore_dinosaur_eggs(egg_list) -> int:
 
 egg_list = [3, 4, 7, 5, 8]
 print(count_carnivore_dinosaur_eggs(egg_list)) # 12
+
+# OTRA FORMA BelloDev
+suma = sum([valor for valor in egg_list if valor % 2 == 0])
+print(suma)
