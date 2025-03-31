@@ -31,7 +31,24 @@ def find_first_sum(nums, goal):
 
   return None
 
-nums = [4, 5, 6, 2]
-goal = 8
+nums = [4, 4, 5, 6, 2]
+goal = 6
 result = find_first_sum(nums, goal) # [2, 3] 
-print(result)
+print(f"Respuesta Midu {result}")
+
+## otra forma BelloDev: La función find_first_sum falla en el caso de prueba:
+# nums = [4, 4, 5, 6, 2]
+# goal = 6
+# Respuestas esperada [0,4]
+def find_suma(nums,goal):
+  for idx,val in enumerate(nums):
+    missing = goal-nums[idx]
+    lista = nums.copy()
+    lista.pop(idx)
+    if missing in lista:
+      idx2 = lista.index(missing)+1+idx
+      resultado = [idx,idx2]
+      return resultado
+
+resultado = find_suma(nums,goal)
+print(f"Respuesta BelloDev {resultado}")
