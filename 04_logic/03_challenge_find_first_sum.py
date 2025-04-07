@@ -31,7 +31,7 @@ def find_first_sum(nums, goal):
 
   return None
 
-nums = [4, 4, 5, 6, 2]
+nums = [5, 2, 9, 4, 3, 3, 1]
 goal = 6
 result = find_first_sum(nums, goal) # [2, 3] 
 print(f"Respuesta Midu {result}")
@@ -41,14 +41,32 @@ print(f"Respuesta Midu {result}")
 # goal = 6
 # Respuestas esperada [0,4]
 def find_suma(nums,goal):
-  for idx,val in enumerate(nums):
+  visto ={}
+  resultado = None
+  for idx in range(0,len(nums)-1):
+    lista = nums[idx+1:]
     missing = goal-nums[idx]
-    lista = nums.copy()
-    lista.pop(idx)
     if missing in lista:
-      idx2 = lista.index(missing)+1+idx
-      resultado = [idx,idx2]
-      return resultado
+      visto[idx] = nums[idx]
+      idx2 = lista.index(missing)
+      visto[idx2+idx+1] = lista[idx2]
+    else:
+      continue
+
+  sol = []
+  if len(visto) != 0:
+    vect = list(visto.keys())
+    for idx in range(0,len(vect),2):
+      sol = sol + [int(vect[idx+1])-int(vect[idx])]
+    minimo = min(sol)
+    idx3 = sol.index(minimo)
+    idxs = list(visto.keys())
+    resultado = [idxs[idx3], idxs[idx3+1]]
+    
+  else:
+    print(f"En el array no existen dos numeros que sumados den {goal}")
+  
+  return resultado
 
 resultado = find_suma(nums,goal)
 print(f"Respuesta BelloDev {resultado}")

@@ -104,3 +104,13 @@ replacement = "Adiós"
 
 new_text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
 print(new_text)
+
+
+
+text = "mi moto alpina derrapante"
+print(text)
+pattern = r"[aeiou]"
+replacement = "e"
+
+new_text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
+print(new_text)

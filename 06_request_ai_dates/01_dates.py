@@ -45,12 +45,31 @@ difference = date2 - date1
 print(f"Diferencia entre las fechas: {difference}")
 
 
+f0 = datetime(2025, 1, 1, 0, 0, 0) 
+fE = datetime(2025, 1, 2, 1, 12, 0) 
+deltaT = 10
 
+def createTspan(f0,fE,deltaT):
+    """ This function creates a time array that starts at f0 and ends at fE with a time step of deltaT.
+    f0 = datetime(2025, 1, 1, 0, 0, 0) 
+    fE = datetime(2025, 1, 1, 1, 0, 0) 
+    deltaT = elapsed time in minutes between measurements.
+    Example of use:
+    
+    The measurement is made every ten mins, starting time [2025,1,1,0,0,0] ending time [2025,1,1,1,0,0]
+    f0 = datetime.(2025,1,1,0,0,0)
+    fe = datetime(2025,1,1,1,0,0)
+    deltaT = 10 (10 minutes each measurement)
 
+    # Result
+    tspan = [datetime.datetime(2025, 1, 1, 0, 0), datetime.datetime(2025, 1, 1, 0, 10), datetime.datetime(2025, 1, 1, 0, 20), datetime.datetime(2025, 1, 1, 0, 30), datetime.datetime(2025, 1, 1, 0, 40), datetime.datetime(2025, 1, 1, 0, 50), datetime.datetime(2025, 1, 1, 1, 0)]
+    """
+    dt = (fE-f0).seconds/(60*deltaT)
+    tspan = [f0+timedelta(minutes=deltaT*t) for t in range(0,int(dt)+1)]
+    return tspan
 
+tspan = createTspan(f0,fE,deltaT)
+print(tspan)
 
-
-
-
-
+tspan_str = [t.strftime("%Y/%m/%d %H:%M") for idx, t in enumerate(tspan)]
 
